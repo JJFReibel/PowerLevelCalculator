@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background: orange;
+}
+</style>
+</head>
+<body>
+<h2>Power Level Calculator</h2>
+<h3>This is Unofficial Dragon Ball Fan Speculation. :)</h3>
+
+<p>Enter a Base Power Level.</p>
+<input type="text" id="PL" value="0">
+
+<p>Select a Saiyan Transformation.</p>
+<input type="radio" id="Trans" checked="checked" name="transformation" value="1"> None<br>
+<input type="radio" id="O" name="transformation"value="10"> Oozaru<br>
+<input type="radio" id="FSS" name="transformation"value="25"> False Super Saiyan<br>
+<input type="radio" id="SS" name="transformation"value="50"> Super Saiyan<br>
+<input type="radio" id="SSLv2" name="transformation"value="100"> Super Saiyan Level 2<br>
+<input type="radio" id="SSLv3" name="transformation"value="300"> Super Saiyan Level 3<br>
+<input type="radio" id="FPSS" name="transformation"value="400"> Full Power Super Saiyan<br>
+<input type="radio" id="LSS" name="transformation"value="1000"> Legendary Super Saiyan<br>
+
+<input type="radio" id="SS2" name="transformation"value="2000"> Super Saiyan 2<br>
+<input type="radio" id="SS2Lv2" name="transformation"value="4000"> Super Saiyan 2 Level 2<br>
+<input type="radio" id="SS2Lv3" name="transformation"value="12000"> Super Saiyan 2 Level 3<br>
+<input type="radio" id="LSS2" name="transformation"value="30000"> Legendary Super Saiyan 2<br>
+
+<input type="radio" id="SS3" name="transformation"value="120000"> Super Saiyan 3<br>
+<input type="radio" id="SS3Lv2" name="transformation"value="240000"> Super Saiyan 3 Level 2<br>
+<input type="radio" id="SS3Lv3" name="transformation"value="720000"> Super Saiyan 3 Level 3<br>
+<input type="radio" id="LSS3" name="transformation"value="1080000"> Legendary Super Saiyan 3<br>
+<input type="radio" id="GO" name="transformation"value="10800000"> Golden Oozaru<br>
+<input type="radio" id="LGO" name="transformation"value="16200000"> Legendary Golden Oozaru<br>
+
+<input type="radio" id="SS4" name="transformation"value="162000000"> Super Saiyan 4<br>
+<input type="radio" id="FPSS4" name="transformation"value="1296000000"> Full Power Super Saiyan 4<br>
+<input type="radio" id="LSS4" name="transformation"value="1944000000"> Legendary Super Saiyan 4<br>
+<input type="radio" id="SSG" name="transformation"value="3888000000"> Super Saiyan God<br>
+<input type="radio" id="LSSG" name="transformation"value="5832000000"> Legendary Super Saiyan God<br>
+<input type="radio" id="SSGSS" name="transformation"value="291600000000"> Super Saiyan God Super Saiyan<br>
+<input type="radio" id="PSSGSS" name="transformation"value="2332800000000"> Perfected Super Saiyan God Super Saiyan<br>
+<input type="radio" id="SSGSSE" name="transformation"value="3499200000000"> Super Saiyan God Super Saiyan Evolution<br>
+<input type="radio" id="FPSS4LB" name="transformation"value="6998400000000"> Full Power Super Saiyan 4 Limit Breaker<br>
+<input type="radio" id="LSS4LB" name="transformation"value="10497600000000"> Legendary Super Saiyan 4 Limit Breaker<br>
+<input type="radio" id="SSGSS2" name="transformation"value="291600000000"> Super Saiyan God Super Saiyan 2<br>
+
+<input type="radio" id="SSGSS2Lv2" name="transformation"value="583200000000"> Super Saiyan God Super Saiyan 2 Level 2<br>
+<input type="radio" id="SSGSS2Lv3" name="transformation"value="1749600000000"> Super Saiyan God Super Saiyan 2 Level 3<br>
+<input type="radio" id="SSGSS3" name="transformation"value="6998400000000"> Super Saiyan God Super Saiyan 3<br>
+<input type="radio" id="SSGSS3Lv2" name="transformation"value="13996800000000"> Super Saiyan God Super Saiyan 3 Level 2<br>
+<input type="radio" id="SSGSS3Lv3" name="transformation"value="41990400000000"> Super Saiyan God Super Saiyan 3 Level 3<br>
+
+<input type="radio" id="UIOD" name="transformation" value="419904000000000"> Ultra Instinct OR Destroyer<br>
+<input type="radio" id="PUIOUE" name="transformation" value="2099520000000000"> Perfected Ultra Instinct OR Ultra Ego<br>
+<input type="radio" id="PUIA" name="transformation" value="167961600000000000"> Perfected Ultra Instinct Avatar<br>
+<input type="radio" id="TUI" name="transformation" value="10077696000000000000"> True Ultra Instinct<br>
+
+<div id="augBox">
+<p>Select any and all augmentations (Potential).</p>
+
+<input type="radio" id="Aug" checked="checked" name="augmentation" value="1"> None<br>
+<input type="radio" id="U" name="augmentation" value="38880000000"> Ultimate<br>
+<input type="radio" id="B" name="augmentation" value="100776960000000000000"> Beast<br>
+</div>
+
+<div id="augBox2">
+<p>Select Berserker State.</p>
+
+<input type="radio" id="Aug2" checked="checked" name="augmentation2" value="1"> None<br>
+<input type="radio" id="Be" name="augmentation2" value="2"> Berserker<br>
+</div>
+
+<p>Enter a Kaioken Level up to 100.</p>
+<input type="text" id="K" value="0"><br>
+<p></p>
+
+
+<button onclick="calculate()">Calculate</button>
+<p>The Scouter Says:<p id="PowerLevel">0</p>
+
+<script>
+function calculate(){
+	var powerLevel = parseFloat(document.getElementById("PL").value);
+        var kaioken = Math.floor(parseInt(document.getElementById("K").value));
+	document.getElementById("K").value = kaioken;
+	var transformationRadios = document.getElementsByName("transformation");
+	var transMultiplier = 1;
+        var augMultiplier = 1;
+        var augMultiplier2 = 1;
+        var kaiokenMultiplier = 1;
+	for (var i = 0, length = transformationRadios.length; i < length; i++) {
+  		if (transformationRadios[i].checked) {
+    		    transMultiplier = parseFloat(transformationRadios[i].value);
+    		    break;
+  		}
+	}
+
+    var chks = augBox.getElementsByTagName("INPUT");
+        for (var i = 0; i < chks.length; i++) {
+            if (chks[i].checked) {
+                augMultiplier *= parseFloat(chks[i].value);
+            }
+        }
+
+    var chks2 = augBox2.getElementsByTagName("INPUT");
+        for (var i = 0; i < chks2.length; i++) {
+            if (chks2[i].checked) {
+                augMultiplier2 *= parseFloat(chks2[i].value);
+            }
+        }
+
+    if(kaioken < 1){
+    	document.getElementById("K").value = 0;
+        kaiokenMultiplier = 1;
+    }
+    else if(kaioken == 1){
+        kaiokenMultiplier = 1.5;
+    }
+    else if(kaioken > 100){
+    	document.getElementById("K").value = 100;
+    	kaiokenMultiplier = 100;
+    }
+    else{
+        kaiokenMultiplier = kaioken;
+    }
+    powerLevel *= (transMultiplier * augMultiplier * augMultiplier2 * kaiokenMultiplier);
+    alert(powerLevel);
+    document.getElementById("PowerLevel").innerHTML = powerLevel;
+}
+</script>
+
+</body>
+</html>
